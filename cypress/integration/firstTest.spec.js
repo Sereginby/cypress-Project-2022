@@ -8,6 +8,8 @@
 
 // });
 
+// Comment
+
 it('By ID', () => {
     cy.visit('https://facebook.com')
     cy.get('#email')
@@ -152,7 +154,7 @@ it("Using get with find and eq Diana", () => {
 it("Using get with find and eq Diana", () => {
     cy.visit("https://docs.cypress.io/api/commands/and")
     cy.viewport(1800,1000)
-    cy.get('div').find('nav').find('ul').find('li').find('a').eq(0)
+    cy.get('main').find('nav').find('ul').find('li').find('a').eq(0)
 })
 
 
