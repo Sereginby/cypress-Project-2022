@@ -1,62 +1,65 @@
 ///<reference types="Cypress" />
 
+//type
 
-it('Should', () => {
+it('type', ()=>{
     cy.visit('https://next.privat24.ua/mobile?lang=en')
-    cy.get('[data-qa-node="amount"]')
-    .type(100)
-    .should('have.value',100)
-    .and('be.visible')
-})  
-
-it('Expect', () => {
-    cy.visit('https://next.privat24.ua/mobile?lang=en')
-    cy.get('[data-qa-node="amount"]')
-      .type(100).then( input=> {
-       expect(input).to.have.value(100)
-    })  
-})  
-
-               
- it('check default value for deposits', ()=> {
-    cy.visit('https://next.privat24.ua/deposit/open?lang=en')
-    cy.get('[data-qa-value="UAH"]')
-        .should('be.checked')   
- })                 
-
- it('check is visible Archive link', ()=> {
-    cy.visit('https://next.privat24.ua/deposit/open?lang=en')
-    cy.contains('Мої депозити')
-       .trigger('mouseover') 
-       .get('#archiveDeposits')
-       .should('be.visible')     
- }) 
-
- it('check is correct attr in button', ()=> {
-    cy.visit('https://next.privat24.ua?lang=en')
-    cy.contains('Show cards')
-        .should('have.attr','type')  
-        .and('match', /button/) 
- })      
-
- 
- it('contains Diana',() => {
-    cy.visit('https://next.privat24.ua/mobile?lang=en')
-    cy.contains('Sign in')
+      .get('[data-qa-node="phone-number"]')
+      .type(112233344)
 })
 
-it('contains Diana',() => {
+it('focus', ()=>{
     cy.visit('https://next.privat24.ua/mobile?lang=en')
-    cy.contains('div','Sign in')
+    cy.viewport(1550, 800)
+      .get('[data-qa-node="amount"]')
+      .focus()
 })
 
-it('contains Diana',() => {
+it('focus', ()=>{
     cy.visit('https://next.privat24.ua/mobile?lang=en')
-    cy.contains('SIGN IN',{matchCase:false})
+    cy.viewport(1550, 800)
+      .get('[data-qa-node="amount"]')
+      .focus()
+      .blur()
 })
 
-it('contains Diana',() => {
+it('clear', ()=>{
     cy.visit('https://next.privat24.ua/mobile?lang=en')
-    cy.get('footer').contains('Apple store')
+    cy.viewport(1550, 800)
+      .get('[data-qa-node="amount"]')
+      .type(999)
+      .wait(6000)
+      .clear()
 })
 
+it('submit', ()=>{
+    cy.visit('https://next.privat24.ua/mobile?lang=en')
+    cy.viewport(1550, 800)
+      .get('form[method="post"]')
+      .submit()
+})
+
+it('click', ()=>{
+    cy.visit('https://next.privat24.ua/mobile?lang=en')
+      .get('[data-qa-node="debitSourceSource"]')
+      .click()
+})
+
+it('righclick', ()=>{
+    cy.visit('https://example.cypress.io/commands/actions')
+      .contains('Right click to edit')
+      .rightclick()
+})
+
+it('dblclick', ()=>{
+    cy.visit('https://developer.mozilla.org/en-US/docs/Web/API/Element/dblclick_event')
+      .contains('My Card')
+      .dblclick()
+})
+
+it('check', ()=>{
+    cy.visit('https://en.privatbank.ua/?')
+    cy.wait(6000)
+    .get('#switch-input"]')
+    .check()
+})
