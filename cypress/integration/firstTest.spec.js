@@ -55,7 +55,8 @@ it('contains Diana',() => {
     cy.contains('SIGN IN',{matchCase:false})
 })
 
-it.only('contains Diana',() => {
+it('contains Diana',() => {
     cy.visit('https://next.privat24.ua/mobile?lang=en')
-    cy.get('').contains('')
+    cy.get('footer').contains('Apple store')
 })
+
