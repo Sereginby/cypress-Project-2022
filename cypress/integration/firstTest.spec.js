@@ -1,6 +1,5 @@
 ///<reference types="Cypress" />
 
-//type
 
 it('type', ()=>{
     cy.visit('https://next.privat24.ua/mobile?lang=en')
@@ -60,6 +59,28 @@ it('dblclick', ()=>{
 it('check', ()=>{
     cy.visit('https://en.privatbank.ua/?')
     cy.wait(6000)
-    .get('#switch-input"]')
-    .check()
+    .get('#switch-input')
+    .check({force: true})
+    .wait(6000)
+    .uncheck({force: true})
+})
+
+it('scrollIntoView', ()=>{
+    cy.visit('https://next.privat24.ua/mobile?lang=en')
+      .get('[data-qa-node="lang"]')
+      .wait(6000)
+      .scrollIntoView()
+})
+
+it('scrollInto', ()=>{
+    cy.visit('https://next.privat24.ua/mobile?lang=en')
+      .wait(6000)
+      .scrollTo(0, 900)
+})
+
+it.only('trigger', ()=>{
+    cy.visit('https://next.privat24.ua/?lang=en')
+    cy.contains('Services')
+      .wait(6000)
+      .trigger('mouseover')
 })
