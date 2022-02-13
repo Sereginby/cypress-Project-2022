@@ -1,41 +1,25 @@
-///<reference types="Cypress" />
+/// <reference types="Cypress" />
+import { SereginbyTest1 } from "../support/pages 2/ SereginbyTest1";
 
-
-it('Replenishmnt of mobile phone number', ()=> {
-    cy.visit('https://next.privat24.ua/mobile?lang=en')         
-      .get('[data-qa-node="phone-number"]')
-      .type('686979712')
-      .get('[data-qa-node="amount"]')
-      .type('1000')
-      .get('[data-qa-node="numberdebitSource"]')
-      .type('4552331448138217')
-      .get('[data-qa-node="expiredebitSource"]')
-      .type('0524')
-      .get('[data-qa-node="cvvdebitSource"]')
-      .type('111')
-      .wait(5000)
-      .get('[data-qa-node="firstNamedebitSource"]')
-      .type('RUTH')
-      .get('[data-qa-node="lastNamedebitSource"]')
-      .type('MONTAIVO')
-      .wait(8000)
-      .get('[data-qa-node="submit"]')
-      .click()    
-      .get('[data-qa-node="card"]')
-      .should('contain.text','4552 **** **** 8217')
-      .get('[data-qa-node="amount"]')
-      .should('contain.text','UAH')
-      .get('[data-qa-node="amount"]')
-      .should('contain.text','1')
-      .get('[data-qa-node="commission"]')
-      .should('contain.text','4')
-      .get('[data-qa-node="commission-currency"]')
-      .should('contain.text','UAH')
-})
+it('Replenishment of mobile phone number', ()=> {
+    cy.visit('https://next.privat24.ua/mobile?lang=en')
+    SereginbyTest1.typePhoneNumber('686979712')
+    SereginbyTest1.typeAmount('1000')
+    SereginbyTest1.typeDebitCardData('4552331448138217', '0524', '111')
+    cy.wait(3000)
+    SereginbyTest1.typeFirstLastNameCard('RUTH', 'MONTAIVO')
+    cy.wait(3000)
+    SereginbyTest1.submitPayment()
+    SereginbyTest1.checkDebitCard('4552 **** **** 8217')
+    SereginbyTest1.checkDebitAmount('UAH')
+    SereginbyTest1.checkDebitAmount('1')
+    SereginbyTest1.checkDebitComission('4')
+    SereginbyTest1.checkPaymentCurrency('UAH')
+});
 
 
 
-it.only('fgkxdn', ()=> {
+it('fgkxdn', ()=> {
     cy.visit('https://next.privat24.ua/money-transfer/card')
       .get('[data-qa-node="numberdebitSource"]')
       .type('4552331448138217')
@@ -82,28 +66,21 @@ it.only('fgkxdn', ()=> {
 
 it('Replenishment of Ukraine mobile phone number Diana', ()=>{
     cy.visit('https://next.privat24.ua/mobile?lang=en')
-    cy.viewport(1500,800)
-    .get('[data-qa-node="phone-number"]')
-    .type(686979712)
-    .get('[data-qa-node="amount"]')
-    .type('1')
-    .get('[data-qa-node="numberdebitSource"]')
-    .type('4552331448138217')
-    .get('[data-qa-node="expiredebitSource"]')
-    .type('0524')
-    .get('[data-qa-node="cvvdebitSource"]')
-    .type('111')
-    .get('[data-qa-node="submit"]').click()
-    .wait(5000)
-    .get('[data-qa-node="card"]')
-    .should('have.text', '4552 **** **** 8217')
-    .get('[data-qa-node="amount"]')
-    .eq(1)
-    .should('contain.text', '1')
-    .should('contain.text', 'UAH')
+    mobileReplenishment.typePhoneNumber('686979712')
+    mobileReplenishment.typeAmount('1')
+    mobileReplenishment.typeDebitCardData('4552331448138217', '0524', '111')
+    cy.wait(5000)
+    mobileReplenishment.submitPayment
+    mobileReplenishment.checkDebitCard('4552 **** **** 8217')
+    mobileReplenishment.checkDebitAmount('1')
+    mobileReplenishment.checkDebitAmount('UAH')
+    
+    
+
     .get('[data-qa-node="commission"]')
     .eq(1)
     .should('have.text', '2')
+
     .get('[data-qa-node="commission-currency"]')
     .eq(0)
     .should('contain.text', 'UAH')
