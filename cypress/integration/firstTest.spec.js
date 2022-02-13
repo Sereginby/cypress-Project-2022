@@ -1,7 +1,7 @@
 /// <reference types="Cypress" />
-import { SereginbyTest1 } from "../support/pages 2/ SereginbyTest1";
+import { SereginbyTest1 } from "../support/pages2/SereginbyTest1";
 
-it('Replenishment of mobile phone number', ()=> {
+it.only('SereginbyMobile', ()=> {
     cy.visit('https://next.privat24.ua/mobile?lang=en')
     SereginbyTest1.typePhoneNumber('686979712')
     SereginbyTest1.typeAmount('1000')
