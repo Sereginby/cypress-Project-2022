@@ -3,36 +3,31 @@ export class mobilePhoneReplenishment {
         cy.get('[data-qa-node="phone-number"]')
           .type(phonenumber)
     }
-
-    typeAmount(amount){
-        cy.get('[data-qa-node="amount"]')
-          .type(amount)
-    }
-
-    typeDebitCardData(cardNumber, expDate, CVV){
-        cy.get('[data-qa-node="numberdebitSource"]')
-          .type(cardNumber)
-          .get('[data-qa-node="expiredebitSource"]')
-          .type(expDate)
-          .get('[data-qa-node="cvvdebitSource"]')
-          .type(CVV)
     
-    }
-
-    submitPayment(){
-        cy.get('[data-qa-node="submit"]').click()
-    }
-
     checkDebitCard(debitCard){
         cy.get('[data-qa-node="card"]')
-          .should('have.text', 'debitCard')
+          .should('have.text', debitCard)
     }
 
     checkDebitAmount(debitAmount){
         cy.get('[data-qa-node="amount"]')
           .eq(1)
-          .should('contain.text', 'debitAmount')
-          .should('contain.text', 'debitAmount')
+          .should('contain.text', debitAmount)
+          .should('contain.text', debitAmount)
+    }
+
+    checkComission(comission){
+       cy.get('[data-qa-node="commission"]')
+      .eq(1)
+    .should('have.text', comission)
+    }
+
+    checkComissionCurrency(comissionCurrency){
+       cy.get('[data-qa-node="commission-currency"]')
+        .eq(0)
+        .should('contain.text', comissionCurrency)
     }
 
 }
+
+export const mobileReplenishment = new mobilePhoneReplenishment()
